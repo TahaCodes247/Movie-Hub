@@ -1,0 +1,355 @@
+/* ============================================================
+   CINEMA ATMOSPHERE & GLOBAL THEME
+   ============================================================ */
+:root {
+  --cinema-red: #e50914;
+  --cinema-red-glow: rgba(229, 9, 20, 0.45);
+  --cinema-gold: #f5c518;
+  --bg-primary: #070709;
+  --bg-surface: #0f0f13;
+  --bg-glass: rgba(18, 18, 24, 0.75);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #070709;
+  color: #f3f4f6;
+  min-height: 100vh;
+  background-image: 
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(229, 9, 20, 0.2), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 90% 15%, rgba(185, 28, 28, 0.08), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 10% 85%, rgba(147, 10, 20, 0.06), transparent 70%),
+    linear-gradient(to bottom, #070709 0%, #050507 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* Custom Cinema Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #09090d;
+}
+::-webkit-scrollbar-thumb {
+  background: #23232e;
+  border-radius: 9999px;
+  border: 2px solid #09090d;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e50914;
+}
+
+/* Subtle Architectural Grid Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 35%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 35%, transparent 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Typography Helpers */
+.font-display {
+  font-family: 'Syne', sans-serif;
+}
+
+.font-tech {
+  font-family: 'Space Grotesk', -apple-system, monospace;
+}
+
+/* Glassmorphism Surface */
+.glass-panel {
+  background: rgba(18, 18, 24, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ============================================================
+   SEARCH BAR FOCUS & GLOW
+   ============================================================ */
+.search-glow {
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.search-glow:focus-within {
+  border-color: rgba(229, 9, 20, 0.85);
+  box-shadow: 
+    0 16px 50px -10px rgba(229, 9, 20, 0.3),
+    0 0 0 1px rgba(229, 9, 20, 0.6),
+    0 0 25px rgba(229, 9, 20, 0.2);
+}
+
+/* Search input clear button */
+.search-clear-btn {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.search-clear-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.search-clear-btn:hover {
+  transform: scale(1.1);
+  color: #fff;
+}
+
+/* Quick Genre Pills */
+.genre-chip {
+  transition: all 0.22s cubic-bezier(0.2, 0, 0, 1);
+}
+.genre-chip:hover {
+  border-color: rgba(229, 9, 20, 0.6);
+  background: rgba(229, 9, 20, 0.12);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(229, 9, 20, 0.2);
+}
+.genre-chip:active {
+  transform: scale(0.96);
+}
+
+/* ============================================================
+   MOVIE CARD ANIMATION & HOVER
+   ============================================================ */
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.movie-card {
+  position: relative;
+  animation: cardEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  transition: 
+    transform 0.36s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.36s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.36s ease;
+  will-change: transform, box-shadow;
+}
+
+.movie-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: rgba(229, 9, 20, 0.8) !important;
+  box-shadow: 
+    0 24px 50px -12px rgba(0, 0, 0, 0.95),
+    0 0 35px 2px rgba(229, 9, 20, 0.45),
+    0 0 70px -10px rgba(229, 9, 20, 0.3),
+    inset 0 0 20px rgba(229, 9, 20, 0.15);
+  z-index: 10;
+}
+
+/* Poster sheen reflection */
+.movie-card .poster-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-card .poster-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    130deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.12) 48%,
+    rgba(229, 9, 20, 0.2) 55%,
+    transparent 78%
+  );
+  transform: translateX(-130%);
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.movie-card:hover .poster-container::after {
+  transform: translateX(130%);
+}
+
+/* Tactile Click Animation when Card is Clicked */
+.movie-card:active,
+.movie-card.poster-clicked {
+  transform: scale(0.92) translateY(3px) !important;
+  border-color: #ffffff !important;
+  box-shadow: 
+    0 0 45px 12px rgba(229, 9, 20, 0.9),
+    0 0 90px 24px rgba(229, 9, 20, 0.5) !important;
+  transition: transform 0.14s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.14s ease !important;
+}
+
+/* ============================================================
+   SKELETON SHIMMER (LOADING STATES)
+   ============================================================ */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite ease-in-out;
+}
+
+.skeleton-card {
+  border-radius: 1rem;
+  background-color: rgba(18, 18, 24, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+/* ============================================================
+   MOVIE DETAIL HERO & BLURRED AMBIENT BACKDROP
+   ============================================================ */
+#movie-detail {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 
+    0 30px 80px -15px rgba(0, 0, 0, 0.98),
+    0 0 45px -10px rgba(229, 9, 20, 0.28);
+}
+
+/* Blurred Movie Poster Backdrop Layer */
+#movie-detail::before {
+  content: "";
+  position: absolute;
+  inset: -60px;
+  background-image: var(--poster-bg, none);
+  background-size: cover;
+  background-position: center;
+  filter: blur(45px) saturate(1.6) brightness(0.28);
+  transform: scale(1.15);
+  z-index: -2;
+  transition: background-image 0.6s ease-in-out;
+}
+
+/* Cinema Vignette & Crimson Ambient Overlay */
+#movie-detail::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 25% 20%, rgba(229, 9, 20, 0.18), transparent 60%),
+    radial-gradient(ellipse at 80% 85%, rgba(185, 28, 28, 0.12), transparent 50%),
+    linear-gradient(135deg, rgba(10, 10, 14, 0.78) 0%, rgba(8, 8, 12, 0.92) 50%, rgba(6, 6, 8, 0.98) 100%);
+  z-index: -1;
+}
+
+/* Detail Poster Box */
+.detail-poster-box {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.95),
+    0 0 35px rgba(229, 9, 20, 0.35);
+}
+
+.detail-poster-box:hover {
+  transform: scale(1.025) translateY(-4px);
+  border-color: rgba(229, 9, 20, 0.85);
+  box-shadow: 
+    0 30px 70px rgba(0, 0, 0, 0.98),
+    0 0 45px 5px rgba(229, 9, 20, 0.6);
+}
+
+/* Stat Card on Detail Page */
+.stat-card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 0.875rem;
+  padding: 0.875rem 1.125rem;
+  transition: all 0.25s ease;
+}
+
+.stat-card:hover {
+  border-color: rgba(229, 9, 20, 0.45);
+  background: rgba(229, 9, 20, 0.06);
+  transform: translateY(-2px);
+}
+
+/* Toast Notification */
+.toast-notice {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #121218;
+  border: 1px solid rgba(229, 9, 20, 0.6);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(229, 9, 20, 0.4);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  z-index: 9999;
+  transform: translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.toast-notice.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ============================================================
+   RADIAL GLOW & LIGHTING
+   ============================================================ */
+.cinema-gradient-text {
+  background: linear-gradient(135deg, #ffffff 30%, #e2e8f0 70%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ruby-gradient-text {
+  background: linear-gradient(135deg, #ff4d4d 0%, #e50914 50%, #b8000b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+

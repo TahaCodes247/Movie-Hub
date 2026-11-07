@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieHub — The Ultimate Cinema Experience</title>
+    <meta name="description" content="Explore, discover, and dive into millions of movies, directors, cast details, ratings, and plot synopses with MovieHub.">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cinema: {
+                            red: '#e50914',
+                            darkRed: '#b8000b',
+                            gold: '#f5c518',
+                            dark: '#070709',
+                            card: '#101015'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#070709] text-neutral-100 min-h-screen antialiased selection:bg-red-600 selection:text-white flex flex-col justify-between">
+    
+    <!-- Top Ambient Glow -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-48 bg-gradient-to-b from-red-600/10 via-transparent to-transparent pointer-events-none -z-10"></div>
+
+    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-6 sm:py-8 flex-1">
+        
+        <!-- Header / Navigation Bar -->
+        <header class="flex items-center justify-between pb-8 sm:pb-12 border-b border-white/5">
+            <!-- Brand Logo -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center shadow-[0_0_20px_rgba(229,9,20,0.5)] group-hover:shadow-[0_0_30px_rgba(229,9,20,0.8)] transition-all duration-300">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-white uppercase leading-none block">
+                        Movie<span class="ruby-gradient-text">Hub</span>
+                    </span>
+                    <span class="font-tech text-[10px] tracking-[0.25em] text-neutral-400 uppercase font-semibold block">
+                        Cinema Database
+                    </span>
+                </div>
+            </a>
+
+            <!-- Right Header Badges -->
+            <div class="flex items-center gap-3">
+                <!-- <span class="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-tech font-medium text-neutral-300 bg-white/5 border border-white/10 backdrop-blur-md">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    OMDb API Live
+                </span> -->
+                <a href="#movieHub" class="font-tech text-xs uppercase tracking-wider text-neutral-300 hover:text-white px-3.5 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] hover:bg-white/10 transition-colors">
+                    Explore
+                </a>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="pt-10 sm:pt-14 pb-8 sm:pb-12 text-center max-w-3xl mx-auto flex flex-col items-center">
+            
+            <!-- Category Spotlight Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-tech font-semibold uppercase tracking-[0.2em] text-red-400 bg-red-950/40 border border-red-800/40 shadow-[0_0_20px_rgba(229,9,20,0.15)] mb-6">
+                <span class="text-red-500">★</span> Unlimited Film Catalog
+            </div>
+
+            <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white uppercase leading-[1.08] mb-4 drop-shadow-md">
+                Discover The <span class="ruby-gradient-text">Art of Cinema</span>
+            </h1>
+
+            <p class="text-neutral-400 text-sm sm:text-base font-normal max-w-xl leading-relaxed mb-8">
+                Search through millions of films, explore directorial visions, full cast lists, ratings, and complete synopses instantly.
+            </p>
+
+            <!-- Search Form -->
+            <div class="w-full max-w-2xl mb-5">
+                <form id="movieForm" action="" class="search-glow relative flex flex-col sm:flex-row items-stretch bg-neutral-900/90 backdrop-blur-2xl border border-neutral-800/90 rounded-2xl overflow-hidden p-1.5 gap-2 transition-all duration-300">
+                    
+                    <!-- Search Icon -->
+                    <div class="hidden sm:flex items-center pl-4 pr-1 text-neutral-400 pointer-events-none">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+
+                    <!-- Input Field -->
+                    <div class="relative flex-1 flex items-center">
+                        <input 
+                            id="movieInput" 
+                            type="text" 
+                            placeholder="Search any title, director, franchise..." 
+                            autocomplete="off"
+                            class="font-tech w-full bg-transparent px-4 sm:px-2 py-3.5 text-sm sm:text-base text-white placeholder-neutral-500 focus:outline-none tracking-wide"
+                        >
+                        <!-- Clear input button -->
+                        <button type="button" id="clearSearchBtn" class="search-clear-btn p-2 text-neutral-500 hover:text-white mr-2" title="Clear search">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="font-tech flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 via-red-600 to-red-700 hover:from-red-500 hover:to-red-600 active:scale-[0.98] text-white font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-8 py-3.5 rounded-xl transition-all duration-200 cursor-pointer shadow-[0_0_25px_rgba(229,9,20,0.45)] hover:shadow-[0_0_35px_rgba(229,9,20,0.75)]">
+                        <span>Search</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Quick Filter / Trending Pills -->
+            <div class="flex flex-wrap items-center justify-center gap-2 text-xs font-tech text-neutral-400">
+                <span class="text-neutral-500 font-medium mr-1 flex items-center gap-1">
+                    <svg class="w-3.5 h-3.5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.316.492-.533 1.035-.694 1.58C8.94 6.357 8.5 8.17 8.5 10c0 .34.02.673.06 1H7a2 2 0 00-2 2v2a2 2 0 002 2h6a2 2 0 002-2v-2a2 2 0 00-2-2h-1.56c.04-.327.06-.66.06-1 0-1.83-.44-3.643-.929-5.372a11.23 11.23 0 00-.694-1.58 3.535 3.535 0 00-.822-.88 1 1 0 00-.719-.215z" clip-rule="evenodd"/>
+                    </svg>
+                    Trending:
+                </span>
+                <button type="button" class="genre-chip px-3 py-1 rounded-full bg-neutral-900/80 border border-neutral-800 text-neutral-300 hover:text-white" data-query="Oppenheimer">Oppenheimer</button>
+                <button type="button" class="genre-chip px-3 py-1 rounded-full bg-neutral-900/80 border border-neutral-800 text-neutral-300 hover:text-white" data-query="Dune">Dune</button>
+                <button type="button" class="genre-chip px-3 py-1 rounded-full bg-neutral-900/80 border border-neutral-800 text-neutral-300 hover:text-white" data-query="Interstellar">Interstellar</button>
+                <button type="button" class="genre-chip px-3 py-1 rounded-full bg-neutral-900/80 border border-neutral-800 text-neutral-300 hover:text-white" data-query="Batman">Batman</button>
+                <button type="button" class="genre-chip px-3 py-1 rounded-full bg-neutral-900/80 border border-neutral-800 text-neutral-300 hover:text-white" data-query="Spider-Man">Spider-Man</button>
+                <button type="button" class="genre-chip px-3 py-1 rounded-full bg-neutral-900/80 border border-neutral-800 text-neutral-300 hover:text-white" data-query="John Wick">John Wick</button>
+            </div>
+        </section>
+
+        <!-- Section Title & Status Bar -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 pb-6 mb-2 border-t border-white/5">
+            <div class="flex items-center gap-3">
+                <div class="w-2.5 h-6 bg-red-600 rounded-full shadow-[0_0_12px_rgba(229,9,20,0.8)]"></div>
+                <div>
+                    <h2 id="sectionHeading" class="font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-white">
+                        Curated Recommendations
+                    </h2>
+                    <p id="sectionSubtitle" class="font-tech text-xs text-neutral-400 mt-0.5">
+                        Handpicked cinematic milestones & audience favorites
+                    </p>
+                </div>
+            </div>
+
+            <!-- Reset to Default Button (hidden by default, shown during search) -->
+            <button id="resetMixBtn" type="button" class="hidden items-center gap-2 font-tech text-xs uppercase tracking-wider text-neutral-400 hover:text-white px-3.5 py-1.5 rounded-lg border border-neutral-800 bg-neutral-900/60 hover:border-neutral-700 transition-colors">
+                <svg class="w-3.5 h-3.5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                </svg>
+                Reset to Featured
+            </button>
+        </div>
+
+        <!-- Movie Hub Grid -->
+        <main id="movieHub" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 lg:gap-7 pb-16">
+            <!-- Movie cards injected dynamically by script.js -->
+        </main>
+
+    </div>
+
+    <!-- Cinematic Footer -->
+    <footer class="border-t border-white/5 bg-neutral-950/80 backdrop-blur-md py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="font-display font-bold text-white tracking-wide">MOVIE<span class="text-red-600">HUB</span></span>
+                <!-- <span class="text-neutral-600 text-xs">•</span> -->
+                <!-- <span class="font-tech text-xs text-neutral-400">Powered by OMDb API</span> -->
+            </div>
+            <p class="font-tech text-xs text-neutral-500 text-center sm:text-right">
+                Engineered for film lovers. All movie metadata and artwork are copyright of their respective owners.
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
